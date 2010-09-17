@@ -12,6 +12,10 @@ module Multiauth
         copy_directory "openid-realselector", "public/javascripts/openid-realselector"
       end
 
+      def copy_twitter_initializer
+        copy_file "devise_twitter.rb", "config/initializers/devise_twitter.rb"
+      end
+
       protected
     end
   end # Generators
