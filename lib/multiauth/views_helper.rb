@@ -3,8 +3,8 @@ module Multiauth
     def multiauth_box(url = nil)
       url = session_path(resource_name) if !url
 
-      form_for(resource, :as => resource_name, :url => url, :html => {:id => "openid"}) do
-        "fuck you"
+      form_for(resource, :as => resource_name, :url => url, :html => {:id => "openid"}) do |f|
+        %@<div id="nojsopenid">#{f.text_field(:identity_url)}#{f.submit('Sign in')}</div>@
       end
     end
 
@@ -16,4 +16,4 @@ module Multiauth
   end
 end
 
-::ActionView::Base.send :include, Multiauth::ViewsHelpers
+::ActionView::Base.send :include, Multiauth::ViewsHelper
