@@ -1,6 +1,9 @@
 ## MAC OS
 .DS_Store
 
+# Rails
+.bundle
+
 ## TEXTMATE
 *.tmproj
 tmtags
@@ -19,3 +22,4 @@ rdoc
 pkg
 
 ## PROJECT::SPECIFIC
+

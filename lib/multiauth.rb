@@ -1,0 +1,2 @@
+require 'multiauth/rails'
+
