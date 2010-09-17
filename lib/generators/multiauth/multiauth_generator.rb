@@ -2,15 +2,15 @@ module Multiauth
   module Generators
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path("../../templates", __FILE__)
-      namespace 'multiauth:install'
+      namespace 'multiauth'
       desc "initializes the required files"
 
       def copy_js
-        copy_file "multiauth.js", "public/javascripts/"
+        copy_file "multiauth.js", "public/javascripts/multiauth.js"
       end
 
       def copy_openid
-        copy_directory "openid-realselector", "public/javascripts/openid-realselector"
+        directory "openid-realselector", "public/javascripts/openid-realselector"
       end
 
       def copy_twitter
