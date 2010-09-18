@@ -4,7 +4,8 @@ module Multiauth
       url = session_path(resource_name) if !url
 
       form_for(resource, :as => resource_name, :url => url, :html => {:id => "openid"}) do |f|
-        %@<div id="nojsopenid">#{f.text_field(:identity_url)}#{f.submit('Sign in')}</div>@
+        %@<div id="nojsopenid">#{f.text_field(:identity_url, :id => "identity_url")}#{f.submit('Sign in')}</div>@+
+        render(:partial => "multiauth/box")
       end
     end
 

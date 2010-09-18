@@ -1,0 +1,1 @@
+ActionController::Base.append_view_path File.expand_path("../../../app/views", __FILE__)
