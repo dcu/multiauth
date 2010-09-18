@@ -2,82 +2,64 @@ require 'multiauth/rails'
 require 'multiauth/views_helper'
 
 module Multiauth
-  PROVIDERS = [
-    {
-      :name => 'Google',
+  PROVIDERS = {
+    'Google' => {
       :url => 'https://www.google.com/accounts/o8/id'
     },
-    {
-      :name => 'Yahoo',
+    'Yahoo' => {
       :url => 'http://yahoo.com/'
     },
-    {
-      :name => 'Twitter',
+    'Twitter' => {
       :url => '/users/sign_in/twitter',
       :real => true
     },
-    {
-      :name => 'Facebook',
-      :selector => '#facebook_signin', # FIXME
+    'Facebook' => {
+      :selector => lambda { oauth_authorize_url(resource_name, :facebook) },
       :real => true
     },
-    {
-      :name => 'Launchpad',
+    'Launchpad' => {
       :url => 'https://launchpad.net/~{user_name}'
     },
-    {
-      :name => 'Github',
-      :url => '#github_signin', # FIXME
+    'Github' => {
+      :url => lambda { oauth_authorize_url(resource_name, :github) },
       :real => true
     },
-    {
-      :name => 'AOL',
+    'AOL' => {
       :user_name_txt => 'screen:name',
       :url => 'http://openid.aol.com/{user_name}'
     },
-    {
-      :name => 'OpenID',
-      :user_name_txt => ':url'
+    'OpenID' => {
+      :url => '{user_name}'
     },
-    {
-      :name => 'MyOpenID',
+    'MyOpenID' => {
       :url => 'http://{user_name}.myopenid.com/'
     },
-    {
-      :name => 'Flickr',
+    'Flickr' => {
       :url => 'http://flickr.com/{user_name}/'
     },
-    {
-      :name => 'Vidoop',
+    'Vidoop' => {
       :url => 'http://{user_name}.myvidoop.com/'
     },
-    {
-      :name => 'ClaimID',
+    'ClaimID' => {
       :url => 'http://claimid.com/{user_name}'
     },
-    {
-      :name => 'Technorati',
+    'Technorati' => {
       :url => 'http://technorati.com/people/technorati/{user_name}/'
     },
-    {
-      :name => 'Wordpress',
+    'Wordpress' => {
       :url => 'http://{user_name}.wordpress.com/'
     },
-    {
-      :name => 'Blogger',
+    'Blogger' => {
       :url => 'http://{user_name}.blogspot.com/'
     },
-    {
-      :name => 'Verisign',
+    'Verisign' => {
       :url => 'http://{user_name}.pip.verisignlabs.com/'
     },
-    {
-      :name => 'LiveJournal',
+    'LiveJournal' => {
       :url => 'http://{user_name}.livejournal.com'
     },
-    {
-      :name => 'MySpace',
+    'MySpace' => {
       :url => 'http://www.myspace.com/{user_name}'
     }
-  ]
+  }
 end

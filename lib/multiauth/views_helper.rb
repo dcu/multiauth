@@ -13,6 +13,19 @@ module Multiauth
       javascript_include_tag('multiauth')+
       stylesheet_link_tag('multiauth')
     end
+
+    def multiauth_providers
+      providers = Multiauth::PROVIDERS
+      if !devise_mapping.oauthable?
+        providers.delete("Facebook")
+        providers.delete("Github")
+      else
+        providers.delete("Facebook") if !resource_class.oauth_providers.include?(:facebook)
+        providers.delete("Github") if !resource_class.oauth_providers.include?(:github)
+      end
+
+      providers
+    end
   end
 end
 

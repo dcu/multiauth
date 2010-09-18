@@ -90,4 +90,11 @@ Some setup you must do manually if you haven't yet:
 
   3. configure your twitter, facebook and github keys
 
+You can config providers in an initializer, for example:
+
+  Multiauth::PROVIDERS.delete("Vidoop")
+  Multiauth::PROVIDERS.delete("Github")
+  Multiauth::PROVIDERS["Google"][:class] = "selected"
+
+
 ===============================================================================

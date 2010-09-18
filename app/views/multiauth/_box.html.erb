@@ -9,21 +9,21 @@
     <div id="slides">
       <ul class="list">
         <% count = 0 %>
-        <% Multiauth::PROVIDERS.each_slice(6) do |providers| %>
+        <% multiauth_providers.each_slice(6) do |providers| %>
           <li class="page">
             <% providers.each_slice(3) do |column| %>
               <div class="column">
-                <% column.each do |provider| %>
-                  <a id="btn_<%= count+=1 %>" class="<%= provider[:name] %> openid_btn" title="<%= provider[:name] %>" href="<%= provider[:url] %>" data-real="<%= provider[:real] || false %>"></a>
+                <% column.each do |provider, config| %>
+                  <a id="btn_<%= count+=1 %>" class="<%= provider %> openid_btn <%= config[:class] %>" title="<%= provider %>" href="<%= config[:url].kind_of?(Proc) ? instance_exec(&config[:url]) : config[:url] %>" data-real="<%= config[:real] || false %>"></a>
                 <% end %>
               </div>
             <% end %>
           </li>
         <% end %>
       </ul>
-      <div class="clear"></div>
     </div>
   </div>
+  <div class="clear"></div>
 </div>
 <div id="openid_inputarea">
   <span class="oidlabel">username</span>
