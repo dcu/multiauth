@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{multiauth}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David A. Cuadrado"]
@@ -29,14 +29,12 @@ Gem::Specification.new do |s|
      "lib/generators/multiauth/multiauth_generator.rb",
      "lib/generators/templates/README",
      "lib/generators/templates/devise_twitter.rb",
+     "lib/generators/templates/images/arrow.gif",
+     "lib/generators/templates/images/balloon.png",
+     "lib/generators/templates/images/indicator.gif",
+     "lib/generators/templates/images/openid-icons.png",
+     "lib/generators/templates/multiauth.css",
      "lib/generators/templates/multiauth.js",
-     "lib/generators/templates/openid-realselector/css/style.css",
-     "lib/generators/templates/openid-realselector/img/arrow.gif",
-     "lib/generators/templates/openid-realselector/img/balloon.png",
-     "lib/generators/templates/openid-realselector/img/indicator.gif",
-     "lib/generators/templates/openid-realselector/img/openid-icons.png",
-     "lib/generators/templates/openid-realselector/js/jquery.openid.js",
-     "lib/generators/templates/openid-realselector/js/jquery.openid.min.js",
      "lib/multiauth.rb",
      "lib/multiauth/rails.rb",
      "lib/multiauth/views_helper.rb",
