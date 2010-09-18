@@ -5,12 +5,10 @@ module Multiauth
       namespace 'multiauth'
       desc "initializes the required files"
 
-      def copy_js
+      def copy_assets
+        directory "images", "public/images/"
+        copy_file "multiauth.css", "public/stylesheets/multiauth.css"
         copy_file "multiauth.js", "public/javascripts/multiauth.js"
-      end
-
-      def copy_openid
-        directory "openid-realselector", "public/javascripts/openid-realselector"
       end
 
       def copy_twitter

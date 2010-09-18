@@ -10,9 +10,8 @@ module Multiauth
     end
 
     def multiauth_assets
-      javascript_include_tag('openid-realselector/js/jquery.openid.js')+
       javascript_include_tag('multiauth')+
-      stylesheet_link_tag('/javascripts/openid-realselector/css/style')
+      stylesheet_link_tag('multiauth')
     end
   end
 end

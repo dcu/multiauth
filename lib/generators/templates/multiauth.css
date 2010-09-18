@@ -1,5 +1,5 @@
 #openid {
-  background: url(../img/indicator.gif) center center no-repeat;
+  background: url(/images/indicator.gif) center center no-repeat;
   margin: 0 auto;
 }
 
@@ -15,7 +15,7 @@
 
 #openid_inputarea {
   display: none;
-  background: url(../img/balloon.png) no-repeat;
+  background: url(/images/balloon.png) no-repeat;
   width: 410px;
   height: 48px;
   color: white;
@@ -40,7 +40,7 @@
 }
 
 .openid_btn {
-  background: url(../img/openid-icons.png) no-repeat;
+  background: url(/images/openid-icons.png) no-repeat;
   margin: 3px;
   display: block;
   height: 48px;
@@ -170,19 +170,19 @@ a.openid_large_btn:focus {
 }
 
 a#prev {
-        background:url(../img/arrow.gif) 0 -31px no-repeat;
+        background:url(/images/arrow.gif) 0 -31px no-repeat;
 }
 
 a#prev:hover {
-        background:url(../img/arrow.gif) 0 0 no-repeat;
+        background:url(/images/arrow.gif) 0 0 no-repeat;
 }
 
 a#next {
-        background:url(../img/arrow.gif) -32px -31px no-repeat;
+        background:url(/images/arrow.gif) -32px -31px no-repeat;
 }
 
 a#next:hover {
-        background:url(../img/arrow.gif) -32px 0 no-repeat;
+        background:url(/images/arrow.gif) -32px 0 no-repeat;
 }
 
 .clear {clear:both}
