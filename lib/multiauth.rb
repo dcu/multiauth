@@ -13,12 +13,15 @@ module Multiauth
       :url => '/users/sign_in/twitter',
       :real => true
     },
-    'Facebook' => {
-      :selector => lambda { oauth_authorize_url(resource_name, :facebook) },
-      :real => true
-    },
     'Launchpad' => {
       :url => 'https://launchpad.net/~{user_name}'
+    },
+    'Facebook' => {
+      :url => lambda { oauth_authorize_url(resource_name, :facebook) },
+      :real => true
+    },
+    'OpenID' => {
+      :url => '{user_name}'
     },
     'Github' => {
       :url => lambda { oauth_authorize_url(resource_name, :github) },
@@ -27,9 +30,6 @@ module Multiauth
     'AOL' => {
       :user_name_txt => 'screen:name',
       :url => 'http://openid.aol.com/{user_name}'
-    },
-    'OpenID' => {
-      :url => '{user_name}'
     },
     'MyOpenID' => {
       :url => 'http://{user_name}.myopenid.com/'
