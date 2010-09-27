@@ -1,3 +1,19 @@
+GIT
+  remote: http://github.com/nbudin/devise_openid_authenticatable.git
+  revision: b827771918439cc9a82cdd7e68d5e3c7da898f8a
+  specs:
+    devise_openid_authenticatable (1.0.0.alpha7)
+      devise (>= 1.0.6)
+      rack-openid (>= 1.2.0)
+
+GIT
+  remote: http://github.com/plataformatec/devise.git
+  revision: ef3480004c8511d09c0047b8406dd3cf7f828e01
+  specs:
+    devise (1.2.rc)
+      bcrypt-ruby (~> 2.1.2)
+      warden (~> 1.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -33,17 +49,9 @@ GEM
       activesupport (~> 3.0.0)
     bcrypt-ruby (2.1.2)
     builder (2.1.2)
-    devise (1.1.2)
-      bcrypt-ruby (~> 2.1.2)
-      warden (~> 0.10.7)
     devise-twitter (0.1.1)
       devise (>= 1.1.0)
       warden_oauth (~> 0.1.1)
-    devise_invitable (0.3.2)
-      devise (~> 1.1.0)
-    devise_openid_authenticatable (1.0.0.alpha7)
-      devise (>= 1.0.6)
-      rack-openid (>= 1.2.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     faraday (0.4.6)
@@ -55,9 +63,6 @@ GEM
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
-    mm-devise (1.2.0)
-      bcrypt-ruby (~> 2.1.2)
-      warden (~> 0.10.7)
     multi_json (0.0.4)
     oauth (0.4.3)
     oauth2 (0.0.13)
@@ -70,7 +75,7 @@ GEM
     rack-openid (1.2.0)
       rack (>= 1.1.0)
       ruby-openid (>= 2.1.8)
-    rack-test (0.5.4)
+    rack-test (0.5.6)
       rack (>= 1.0)
     rails (3.0.0)
       actionmailer (= 3.0.0)
@@ -87,11 +92,11 @@ GEM
       thor (~> 0.14.0)
     rake (0.8.7)
     ruby-openid (2.1.8)
-    thor (0.14.0)
+    thor (0.14.2)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
-    warden (0.10.7)
+    warden (1.0.0)
       rack (>= 1.0.0)
     warden_oauth (0.1.1)
       oauth
@@ -101,9 +106,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  devise!
   devise-twitter (= 0.1.1)
-  devise_invitable (= 0.3.2)
-  devise_openid_authenticatable (= 1.0.0.alpha7)
-  mm-devise (= 1.2.0)
+  devise_openid_authenticatable!
   oauth2 (= 0.0.13)
   rails (>= 3.0.0)
