@@ -14,7 +14,7 @@
             <% providers.each_slice(3) do |column| %>
               <div class="column">
                 <% column.each do |provider, config| %>
-                  <a id="btn_<%= count+=1 %>" class="<%= provider %> openid_btn <%= config[:class] %>" title="<%= provider %>" href="<%= config[:url].kind_of?(Proc) ? instance_exec(&config[:url]) : config[:url] %>" data-real="<%= config[:real] || false %>"></a>
+                  <a id="btn_<%= count+=1 %>" class="<%= provider %> openid_btn <%= config[:class] %>" title="<%= provider %>" href="/auth/<%= config["openid"] ? "open_id?openid_url=#{config["openid"]}" : "#{provider.downcase}" %>"></a>
                 <% end %>
               </div>
             <% end %>

@@ -10,9 +10,8 @@ module Multiauth
     end
 
     def multiauth_providers
-      Multiauth::PROVIDERS
+      Multiauth.providers || []
     end
   end
 end
 
-::ActionView::Base.send :include, Multiauth::ViewsHelper
