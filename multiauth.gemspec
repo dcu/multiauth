@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David A. Cuadrado"]
-  s.date = %q{2010-09-26}
+  s.date = %q{2010-10-05}
   s.description = %q{multi authentication gem using devise & co}
   s.email = %q{krawek@gmail.com}
   s.extra_rdoc_files = [
@@ -60,22 +60,16 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_runtime_dependency(%q<rails>, ["= 3.0.0"])
-      s.add_runtime_dependency(%q<devise_openid_authenticatable>, ["= 1.0.0.alpha7"])
-      s.add_runtime_dependency(%q<devise-twitter>, ["= 0.1.1"])
-      s.add_runtime_dependency(%q<oauth2>, ["= 0.0.13"])
+      s.add_runtime_dependency(%q<omniauth>, ["= 0.1.1"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<rails>, ["= 3.0.0"])
-      s.add_dependency(%q<devise_openid_authenticatable>, ["= 1.0.0.alpha7"])
-      s.add_dependency(%q<devise-twitter>, ["= 0.1.1"])
-      s.add_dependency(%q<oauth2>, ["= 0.0.13"])
+      s.add_dependency(%q<omniauth>, ["= 0.1.1"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
     s.add_dependency(%q<rails>, ["= 3.0.0"])
-    s.add_dependency(%q<devise_openid_authenticatable>, ["= 1.0.0.alpha7"])
-    s.add_dependency(%q<devise-twitter>, ["= 0.1.1"])
-    s.add_dependency(%q<oauth2>, ["= 0.0.13"])
+    s.add_dependency(%q<omniauth>, ["= 0.1.1"])
   end
 end
 

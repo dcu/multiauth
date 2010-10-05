@@ -4,61 +4,61 @@ require 'multiauth/views_helper'
 module Multiauth
   PROVIDERS = {
     'Google' => {
-      :url => 'https://www.google.com/accounts/o8/id'
+      :url => '/auth/open_id?openid_url=https://www.google.com/accounts/o8/id'
     },
     'Twitter' => {
-      :url => '/users/sign_in/twitter',
+      :url => '/auth/twitter',
       :real => true
     },
     'Facebook' => {
-      :url => lambda { oauth_authorize_url(resource_name, :facebook) },
+      :url => '/auth/facebook',
       :real => true
     },
     'Yahoo' => {
-      :url => 'http://yahoo.com/'
+      :url => '/auth/open_id?openid_url=http://yahoo.com/'
     },
     'AOL' => {
-      :url => 'http://openid.aol.com/{user_name}'
+      :url => '/auth/open_id?openid_url=http://openid.aol.com/{user_name}'
     },
     'MySpace' => {
-      :url => 'http://www.myspace.com/{user_name}'
+      :url => '/auth/open_id?openid_url=http://www.myspace.com/{user_name}'
     },
     'Github' => {
-      :url => lambda { oauth_authorize_url(resource_name, :github) },
+      :url => '/auth/github',
       :real => true
     },
     'MyOpenID' => {
-      :url => 'http://{user_name}.myopenid.com/'
+      :url => '/auth/open_id?openid_url=http://{user_name}.myopenid.com/'
     },
     'Wordpress' => {
-      :url => 'http://{user_name}.wordpress.com/'
+      :url => '/auth/open_id?openid_url=http://{user_name}.wordpress.com/'
     },
     'Blogger' => {
-      :url => 'http://{user_name}.blogspot.com/'
+      :url => '/auth/open_id?openid_url=http://{user_name}.blogspot.com/'
     },
     'Flickr' => {
-      :url => 'http://flickr.com/{user_name}/'
+      :url => '/auth/open_id?openid_url=http://flickr.com/{user_name}/'
     },
     'Launchpad' => {
-      :url => 'https://launchpad.net/~{user_name}'
+      :url => '/auth/open_id?openid_url=https://launchpad.net/~{user_name}'
     },
     'Vidoop' => {
-      :url => 'http://{user_name}.myvidoop.com/'
+      :url => '/auth/open_id?openid_url=http://{user_name}.myvidoop.com/'
     },
     'ClaimID' => {
-      :url => 'http://claimid.com/{user_name}'
+      :url => '/auth/open_id?openid_url=http://claimid.com/{user_name}'
     },
     'Technorati' => {
-      :url => 'http://technorati.com/people/technorati/{user_name}/'
+      :url => '/auth/open_id?openid_url=http://technorati.com/people/technorati/{user_name}/'
     },
     'Verisign' => {
-      :url => 'http://{user_name}.pip.verisignlabs.com/'
+      :url => '/auth/open_id?openid_url=http://{user_name}.pip.verisignlabs.com/'
     },
     'LiveJournal' => {
-      :url => 'http://{user_name}.livejournal.com'
+      :url => '/auth/open_id?openid_url=http://{user_name}.livejournal.com'
     },
     'OpenID' => {
-      :url => '{user_name}'
+      :url => '/auth/open_id'
     }
   }
 end
