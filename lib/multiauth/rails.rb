@@ -6,27 +6,36 @@ module Multiauth
     paths.app.views       = File.expand_path("../../../app/views", __FILE__)
     paths.config.routes   = File.expand_path("../routes.rb", __FILE__)
 
+
     initializer "multiauth" do |app|
+
       config_file = Rails.root+"config/auth_providers.yml"
-      providers = YAML::load(ERB.new(File.read(config_file)).result)
-      if providers[Rails.env].nil?
-        raise ArgumentError, "cannot find section for #{Rails.env} environment in #{config_file}"
-      end
 
-      Multiauth.providers = providers[Rails.env]
-
-      require 'omniauth/openid'
-      require 'openid/store/filesystem'
-
-      app.config.middleware.use OmniAuth::Strategies::OpenID, OpenID::Store::Filesystem.new('/tmp') # FIXME: mm store
-
-      app.config.middleware.use OmniAuth::Builder do
-        Multiauth.providers.each do |provider, config|
-          next if config["token"].blank?
-
-          puts ">> Setting up #{provider} provider"
-          provider provider.downcase.to_sym, config["id"], config["token"]
+      if File.exist?(config_file)
+        providers = YAML::load(ERB.new(File.read(config_file)).result)
+        if providers.blank?
+          raise ArgumentError, "#{config_file} is invalid"
+        elsif providers[Rails.env].nil?
+          raise ArgumentError, "cannot find section for #{Rails.env} environment in #{config_file}"
         end
+
+        Multiauth.providers = providers[Rails.env]
+
+        require 'omniauth/openid'
+        require 'openid/store/filesystem'
+
+        app.config.middleware.use OmniAuth::Strategies::OpenID, OpenID::Store::Filesystem.new('/tmp') # FIXME: mm store
+
+        app.config.middleware.use OmniAuth::Builder do
+          Multiauth.providers.each do |provider, config|
+            next if config["token"].blank?
+
+            puts ">> Setting up #{provider} provider"
+            provider provider.downcase.to_sym, config["id"], config["token"]
+          end
+        end
+      else
+        $stderr.puts "Config file doesn't exist: #{config_file}"
       end
     end
 
