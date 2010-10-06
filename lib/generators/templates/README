@@ -3,98 +3,57 @@
 
 Some setup you must do manually if you haven't yet:
 
-  1. configure your model, for example:
+1. configure your User model (mongo_mapper example):
 
-     class User
-       devise :database_authenticatable, :openid_authenticatable, :rememberable,
-              :trackable, :validatable, :twitter_oauth, :oauthable
+    class User
+      ...
+      key :auth_keys, Array
 
-       def self.find_for_github_oauth(access_token, signed_in_resource=nil)
-        data = ActiveSupport::JSON.decode(access_token.get('/api/v2/json/user/show'))["user"]
+      def self.authenticate(fields)
+        auth_key = "#{fields["provider"]}_#{fields["uid"]}"
+        user = User.first(:auth_keys => auth_key)
+        if user.nil?
+          user = User.new(:auth_keys => [auth_key])
+          user.send(:auth_fields=, fields["user_info"])
+          user.save!
+        end
 
-        if user = User.find_by_email(data["email"])
-          user
-        else
-          User.create!(:name => data["name"], :email => data["email"],
-                       :github_id => data["id"])
+        user
+      end
+
+      def connect(fields)
+        auth_key = "#{fields["provider"]}_#{fields["uid"]}"
+        user = User.first(:auth_keys => auth_key, :select => [:id])
+        if user.present? && user.id != self.id
+          user.destroy if merge_account(user)
+        end
+
+        self.push_uniq(:auth_keys => auth_key)
+      end
+
+      def merge_account(other_user)
+        # return true to delete the old user
+        true
+      end
+
+      def auth_fields=(info)
+        Rails.logger.info "FIELDS: #{info.inspect}"
+        info.each_pair do |k, v|
+          self[k] = v
         end
       end
+    end
 
-      def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
-        data = ActiveSupport::JSON.decode(access_token.get('/me'))
+2. configure the service keys at config/auth_providers.yml
 
-        if user = User.find_by_email(data["email"])
-          user
-        else
-          User.create!(:name => data["name"], :email => data["email"],
-                       :facebook_id => data["id"], :facebook_profile => data["link"])
-        end
-      end
 
-      def self.create_from_identity_url(identity_url)
-        self.create(:identity_url => identity_url)
-      end
+Default routes:
+  /sessions/sign_in
+  /sessions/sign_out
 
-      def self.openid_required_fields
-        ["fullname", "email", "http://axschema.org/pref/language", "http://axschema.org/contact/email"]
-      end
-
-      def self.openid_optional_fields
-        %w[
-          http://axschema.org/namePerson/friendly
-          http://axschema.org/namePerson
-          http://axschema.org/birthDate
-          gender
-          http://axschema.org/person/gender
-          http://axschema.org/contact/postalCode/home
-          country
-          http://axschema.org/contact/country/home
-          language
-          http://axschema.org/pref/language
-          http://axschema.org/pref/timezone
-        ]
-      end
-
-      def openid_fields=(fields)
-        logger.info "OPENID FIELDS: #{fields.inspect}"
-        fields.each do |key, value|
-          if value.is_a? Array
-            value = value.first
-          end
-
-          case key.to_s
-          when "fullname", "http://axschema.org/namePerson"
-            self.full_name = value
-          when "email", "http://axschema.org/contact/email"
-            self.email = value
-          when "gender", "http://axschema.org/person/gender"
-            self.gender = value
-          else
-            logger.error "Unknown OpenID field: #{key}"
-          end
-        end
-      end
-
-      def password_required?
-        return false if self[:identity_url].present? || self[:facebook_id].present? || self[:github_id].present?
-
-        (encrypted_password.blank? || !password.blank?)
-      end
-     end
-
-  2. to include the javascripts do
-       <%= multiauth_assets %>
-
-     to render the multiauth box do
-       <%= multiauth_box %>
-
-  3. configure your twitter, facebook and github keys
-
-You can config providers in an initializer, for example:
-
-  Multiauth::PROVIDERS.delete("Vidoop")
-  Multiauth::PROVIDERS.delete("Github")
-  Multiauth::PROVIDERS["Google"][:class] = "selected"
+you can override them using the following routes:
+  match "/login" => "multiauth/sessions#new", :as => :new_session
+  match "/logout" => "multiauth/sessions#destroy", :method => :get, :as => :destroy_session
 
 
 ===============================================================================
