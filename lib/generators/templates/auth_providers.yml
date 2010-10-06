@@ -1,0 +1,47 @@
+base: &common
+  Twitter:
+    id: <TWITTER ID>
+    token: <TWITTER TOKEN>
+  Facebook:
+    id: <FACEBOOK ID>
+    token: <FACEBOOK TOKEN>
+  Github:
+    id: <GITHUB ID>
+    token: <GITHUB TOKEN>
+  Google:
+    openid: https://www.google.com/accounts/o8/id
+  Yahoo:
+    openid: http://yahoo.com
+  AOL:
+    openid: http://openid.aol.com/{user_name}
+  MySpace:
+    openid: http://www.myspace.com/{user_name}
+  MyOpenID:
+    openid: http://{user_name}.myopenid.com/
+  Wordpress:
+    openid: http://{user_name}.wordpress.com/
+  Blogger:
+    openid: http://{user_name}.blogspot.com/
+  Flickr:
+    openid: http://flickr.com/{user_name}/
+  Launchpad:
+    openid: https://launchpad.net/~{user_name}
+  Vidoop:
+    openid: http://{user_name}.myvidoop.com/
+  ClaimID:
+    openid: http://claimid.com/{user_name}
+  Technorati:
+    openid: http://technorati.com/people/technorati/{user_name}/
+  Verisign:
+    openid: http://{user_name}.pip.verisignlabs.com/
+  LiveJournal:
+    openid: http://{user_name}.livejournal.com
+  OpenId:
+    openid: {user_name}
+
+development:
+  <<: *common
+production:
+  <<: *common
+test:
+  <<: *common

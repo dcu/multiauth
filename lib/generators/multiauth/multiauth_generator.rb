@@ -11,8 +11,8 @@ module Multiauth
         copy_file "multiauth.js", "public/javascripts/multiauth.js"
       end
 
-      def copy_twitter
-        copy_file "devise_twitter.rb", "config/initializers/devise_twitter.rb"
+      def copy_config_file
+        copy_file "auth_providers.yml", "config/auth_providers.yml"
       end
 
       def show_readme
