@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David A. Cuadrado"]
-  s.date = %q{2010-10-05}
+  s.date = %q{2010-10-06}
   s.description = %q{multi authentication gem using devise & co}
   s.email = %q{krawek@gmail.com}
   s.extra_rdoc_files = [
@@ -25,9 +25,12 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "app/controllers/multiauth/sessions_controller.rb",
      "app/views/multiauth/_box.html.erb",
+     "app/views/multiauth/sessions/new.html.haml",
      "lib/generators/multiauth/multiauth_generator.rb",
      "lib/generators/templates/README",
+     "lib/generators/templates/auth_providers.yml",
      "lib/generators/templates/devise_twitter.rb",
      "lib/generators/templates/images/arrow.gif",
      "lib/generators/templates/images/balloon.png",
@@ -36,7 +39,9 @@ Gem::Specification.new do |s|
      "lib/generators/templates/multiauth.css",
      "lib/generators/templates/multiauth.js",
      "lib/multiauth.rb",
+     "lib/multiauth/helpers.rb",
      "lib/multiauth/rails.rb",
+     "lib/multiauth/routes.rb",
      "lib/multiauth/views_helper.rb",
      "multiauth.gemspec",
      "spec/multiauth_spec.rb",
