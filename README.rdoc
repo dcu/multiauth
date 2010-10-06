@@ -1,6 +1,32 @@
-= multiauth
+= Usage (by example)
 
-Description goes here.
+create an application
+
+    rails new multiauth-example
+    cd multiauth-example
+
+edit Gemfile and add
+
+    gem 'omniauth', '~> 0.1.1'
+    gem 'multiauth', '~> 0.2.2'
+
+bundle the app to install the dependencies
+
+    bundle
+
+install required files
+
+    rails g multiauth
+    rails g model User email:string uid:string
+
+start the server
+
+    rails s
+
+and then visit
+
+    http://localhost:3000/sessions/sign_in
+
 
 == Note on Patches/Pull Requests
  
