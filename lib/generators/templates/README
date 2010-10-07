@@ -55,5 +55,14 @@ you can override them using the following routes:
   match "/login" => "multiauth/sessions#new", :as => :new_session
   match "/logout" => "multiauth/sessions#destroy", :method => :get, :as => :destroy_session
 
+you can override the default view creating the file:
+  app/views/multiauth/sessions/new.html.haml
+
+to render the auth providers as a dropdown menu use:
+  <%= multiauth_menu("connect your account") %>
+
+you can render single links as follows:
+  <%= multiauth_link("Google") %>
+
 
 ===============================================================================
