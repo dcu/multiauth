@@ -4,6 +4,10 @@ module Multiauth
       render "multiauth/box"
     end
 
+    def multiauth_menu(title = "Sign In")
+      render "multiauth/menu", :title => title
+    end
+
     def multiauth_assets
       javascript_include_tag('multiauth')+
       stylesheet_link_tag('multiauth')

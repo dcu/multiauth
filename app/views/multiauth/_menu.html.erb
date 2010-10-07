@@ -1,0 +1,17 @@
+<div id="multiauth-menu">
+  <h2>
+    <a href="#"><%= title %></a>
+  </h2>
+  <div class="menu-container">
+      <% count = 0 %>
+      <% multiauth_providers.each_slice(5) do |providers| %>
+        <div class="rows">
+          <% providers.each do |provider, config| %>
+            <div class="item" style="float: left; width: 19.5%;">
+              <a id="btn_<%= count+=1 %>" class="<%= provider %> openid_btn <%= config["class"] %>" title="<%= provider %>" href="/auth/<%= config["openid"] ? "open_id?openid_url=#{config["openid"]}" : "#{provider.downcase}" %>"></a>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+</div>
