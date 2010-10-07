@@ -1,7 +1,7 @@
 module Multiauth
   module ViewsHelper
     def multiauth_box
-      render(:partial => "multiauth/box")
+      render "multiauth/box"
     end
 
     def multiauth_assets
@@ -10,7 +10,14 @@ module Multiauth
     end
 
     def multiauth_providers
-      Multiauth.providers || []
+      Multiauth.providers || {}
+    end
+
+    def multiauth_link(provider, text = "", cssclass = nil)
+      config = multiauth_providers[provider]
+      css_class ||= "#{provider} openid_btn #{config["class"]}"
+
+      %@<a class="#{css_class}" title="#{provider}" href="/auth/#{config["openid"] ? "open_id?openid_url=#{config["openid"]}" : "#{provider.downcase}"}">#{text}</a>@
     end
   end
 end
