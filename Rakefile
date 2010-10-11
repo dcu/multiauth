@@ -13,7 +13,7 @@ begin
     gem.add_development_dependency "rspec", ">= 1.2.9"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
     gem.add_dependency "rails", "3.0.0"
-    gem.add_dependency "omniauth", "0.1.1"
+    gem.add_dependency "omniauth", "~> 0.1.3"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
