@@ -67,6 +67,12 @@
 .Launchpad { background-position: 0px  -814px; }
 .LiveJournal { background-position: 0px  -861px; }
 .Vidoop { background-position: 0px  -908px; }
+.Gowalla { background-position: 0px  -951px; }
+.Ldap { background-position: 0px  -999px; }
+.ThirtySevenSignals { background-position: 0px  -1047px; }
+.Foursquare { background-position: 0px  -1195px; }
+.Identica { background-position: 0px -1143px; }
+
 
 .OpenID.oselected { background-position: -300px 0; }
 .Verisign.oselected { background-position: -300px -48px; }
@@ -88,6 +94,12 @@
 .Launchpad.oselected { background-position: -300px  -814px; }
 .LiveJournal.oselected { background-position: -300px  -861px; }
 .Vidoop.oselected { background-position: -300px  -908px; }
+.Gowalla.oselected { background-position:-300px  -951px; }
+.Ldap.oselected { background-position: -300px  -999px; }
+.ThirtySevenSignals.oselected { background-position: -300px  -1047px; }
+.Foursquare.oselected { background-position: -300px  -1195px; }
+.Identica.oselected { background-position: -300px -1143px; }
+
 
 .OpenID:hover { background-position: -150px 0; }
 .Verisign:hover { background-position: -150px -48px; }
@@ -109,12 +121,42 @@
 .Launchpad:hover { background-position: -150px  -814px; }
 .LiveJournal:hover { background-position: -150px  -861px; }
 .Vidoop:hover { background-position: -150px  -908px; }
+.Gowalla:hover { background-position: -150px  -951px; }
+.Ldap:hover { background-position: -150px  -999px; }
+.ThirtySevenSignals:hover { background-position: -150px  -1047px; }
+.Foursquare:hover { background-position: -150px  -1195px; }
+.Identica:hover { background-position: -150px -1143px; }
 
 a.openid_large_btn:focus {
   outline: none;
   -moz-outline-style: none;
 }
 
+#multiauth-menu {
+  display: inline;
+  position: relative;
+}
+
+#multiauth-menu div.menu-container {
+  display: none;
+  border: 2px solid gray;
+}
+
+#multiauth-menu ul {
+  list-style-type: none;
+}
+
+#multiauth-menu div.menu-container {
+  width: 56em;
+  position: absolute;
+  top: 1.6em;
+  left: 0em;
+  z-index: 1000;
+}
+
+#multiauth-menu.hovering div.menu-container {
+  display: block;
+}
 
 #carousel {
   margin:0 auto;
