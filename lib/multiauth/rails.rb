@@ -31,7 +31,7 @@ module Multiauth
             next if config["token"].blank?
 
             puts ">> Setting up #{provider} provider"
-            provider provider.downcase.to_sym, config["id"], config["token"]
+            provider provider.underscore.to_sym, config["id"], config["token"]
           end
         end
       else
