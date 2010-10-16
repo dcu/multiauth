@@ -1,7 +1,7 @@
 module Multiauth
   module ViewsHelper
-    def multiauth_box
-      render "multiauth/box"
+    def multiauth_box(title = nil)
+      render "multiauth/box", :title => title
     end
 
     def multiauth_menu(title = "Sign In")
