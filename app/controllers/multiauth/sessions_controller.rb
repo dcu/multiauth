@@ -12,7 +12,7 @@ module Multiauth
       end
 
       if logged_in?
-        redirect_to root_path
+        redirect_to session[:return_to] ? session[:return_to] : root_path
       else
         render 'new'
       end
