@@ -21,7 +21,7 @@ module Multiauth
       config = multiauth_providers[provider]
       css_class ||= "#{provider} openid_btn #{config["class"]}"
 
-      %@<a class="#{css_class}" title="#{provider}" href="/auth/#{config["openid"] ? "open_id?openid_url=#{config["openid"]}" : "#{provider.downcase}"}">#{text}</a>@
+      %@<a class="#{css_class}" title="#{provider}" href="/auth/#{config["openid"] ? "open_id?openid_url=#{config["openid"]}" : "#{provider.underscore}"}">#{text}</a>@
     end
   end
 end

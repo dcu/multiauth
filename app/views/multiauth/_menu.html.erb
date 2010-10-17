@@ -8,7 +8,7 @@
         <div class="rows">
           <% providers.each do |provider, config| %>
             <div class="item" style="float: left; width: 19.5%;">
-              <a id="btn_<%= count+=1 %>" class="<%= provider %> openid_btn <%= config["class"] %>" title="<%= provider %>" href="/auth/<%= config["openid"] ? "open_id?openid_url=#{config["openid"]}" : "#{provider.downcase}" %>"></a>
+              <a id="btn_<%= count+=1 %>" class="<%= provider %> openid_btn <%= config["class"] %>" title="<%= provider %>" href="/auth/<%= config["openid"] ? "open_id?openid_url=#{config["openid"]}" : "#{provider.underscore}" %>"></a>
             </div>
           <% end %>
         </div>
