@@ -24,15 +24,14 @@ module Multiauth
         require 'omniauth/openid'
         require 'openid/store/filesystem'
 
-        app.config.middleware.use OmniAuth::Strategies::OpenID, OpenID::Store::Filesystem.new('/tmp') # FIXME: mm store
+        app.config.middleware.use OmniAuth::Strategies::OpenID, OpenID::Store::Filesystem.new('/tmp') # FIXME: mongodb store
 
-        app.config.middleware.use OmniAuth::Builder do
-          Multiauth.providers.each do |provider, config|
-            next if config["token"].blank?
+        Devise.omniauth :open_id
+        Multiauth.providers.each do |provider, config|
+          next if config["token"].blank?
 
-            puts ">> Setting up #{provider} provider"
-            provider provider.underscore.to_sym, config["id"], config["token"]
-          end
+          puts ">> Setting up #{provider} provider"
+          Devise.omniauth provider.underscore.to_sym, config["id"], config["token"]
         end
       else
         $stderr.puts "Config file doesn't exist: #{config_file}"

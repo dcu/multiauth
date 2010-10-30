@@ -14,7 +14,7 @@
             <% providers.each_slice(3) do |column| %>
               <div class="column">
                 <% column.each do |provider, config| %>
-                  <a id="btn_<%= count+=1 %>" class="<%= provider %> openid_btn <%= config["class"] %>" title="<%= provider %>" href="/auth/<%= config["openid"] ? "open_id?openid_url=#{config["openid"]}" : "#{provider.underscore}" %>"></a>
+                  <a id="btn_<%= count+=1 %>" class="<%= provider %> openid_btn <%= config["class"] %>" title="<%= provider %>" href="/users/auth/<%= config["openid"] ? "open_id?openid_url=#{config["openid"]}" : "#{provider.underscore}" %>"></a>
                 <% end %>
               </div>
             <% end %>

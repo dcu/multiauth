@@ -1,6 +1,4 @@
 Rails::Application.routes.draw do
-  match '/sessions/sign_in' => "multiauth/sessions#new", :as => :new_session
-  match '/sessions/sign_out' => "multiauth/sessions#destroy", :method => :get, :as => :destroy_session
-
-  match "/auth/:provider/callback" => "multiauth/sessions#auth"
+  mapping = Devise.mappings[:user]
+  match "#{mapping.fullpath}/auth/:provider/callback" => "multiauth/sessions#auth", :as => :omniauth_callback
 end

@@ -1,32 +1,27 @@
 module Multiauth
-  class SessionsController < ApplicationController
-    def new
-    end
-
+  class SessionsController < Devise::OmniauthCallbacksController
     def auth
       # see http://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
-      if logged_in?
-        self.current_user.connect(params['auth'] || request.env['rack.auth'])
-      else
-        self.current_user = User.authenticate(params['auth'] || request.env['rack.auth'])
+      fields = env["omniauth.auth"] || request.env['rack.auth']
+
+      puts ">>>>>>>>> #{user_signed_in?} #{self.current_user}"
+      if user_signed_in?
+        self.current_user.connect(fields)
+        redirect_to user_path(self.current_user)
+      elsif (@user = User.authenticate(fields)) && (!@user.new_record?)
+        flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => fields["provider"].titleize
+        self.current_user = @user
+        sign_in_and_redirect(@user, :event => :authentication)
+        return
       end
 
-      if logged_in?
-        redirect_to session[:return_to] ? session[:return_to] : root_path
-      else
-        render 'new'
-      end
+      redirect_to new_session_path(:user)
     end
-
-    def failure
-      flash.now[:error] = params[:message]
-      render 'new'
-    end
-
-    def destroy
-      self.current_user = nil
-      redirect_to root_path
-    end
+    alias_method :twitter, :auth
+    alias_method :identica, :auth
+    alias_method :open_id, :auth
+    alias_method :linked_in, :auth
+    alias_method :facebook, :auth
 
     protected
   end
