@@ -24,9 +24,10 @@ module Multiauth
         require 'omniauth/openid'
         require 'openid/store/filesystem'
 
-        app.config.middleware.use OmniAuth::Strategies::OpenID, OpenID::Store::Filesystem.new('/tmp') # FIXME: mongodb store
+        if !Devise.omniauth_configs.has_key?(:open_id)
+          Devise.omniauth :open_id, OpenID::Store::Filesystem.new('/tmp')
+        end
 
-        Devise.omniauth :open_id
         Multiauth.providers.each do |provider, config|
           next if config["token"].blank?
 
