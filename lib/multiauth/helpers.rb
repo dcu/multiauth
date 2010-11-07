@@ -12,7 +12,7 @@ module Multiauth
     end
 
     def current_user
-      @current_user ||= User.first(:_id => session[:user]) if session[:user]
+      @current_user ||= User.find(session[:user]) if session[:user]
     end
 
     def logged_in?
