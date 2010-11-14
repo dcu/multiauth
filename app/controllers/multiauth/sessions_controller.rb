@@ -8,6 +8,7 @@ module Multiauth
       if user_signed_in?
         self.current_user.connect(fields)
         redirect_to user_path(self.current_user)
+        return
       elsif (@user = User.authenticate(fields)) && (!@user.new_record?)
         flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => fields["provider"].titleize
         self.current_user = @user
