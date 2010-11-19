@@ -1,4 +1,7 @@
-Rails::Application.routes.draw do
+Rails.application.routes.draw do
   mapping = Devise.mappings[:user]
-  match "#{mapping.fullpath}/auth/:provider/callback" => "multiauth/sessions#auth", :as => :omniauth_callback
+  if mapping
+    match "#{mapping.fullpath}/auth/:provider/callback" => "multiauth/sessions#auth", :as => :omniauth_callback
+  end
 end
+
