@@ -19,9 +19,9 @@ module Multiauth
 
     def multiauth_link(provider, text = "", cssclass = nil)
       config = multiauth_providers[provider]
-      css_class ||= "#{provider} openid_btn #{config["class"]}"
+      cssclass ||= "#{provider} openid_btn #{config["class"]}"
 
-      %@<a class="#{css_class}" title="#{provider}" href="/auth/#{config["openid"] ? "open_id?openid_url=#{config["openid"]}" : "#{provider.underscore}"}">#{text}</a>@
+      %@<a class="#{cssclass}" title="#{provider}" href="/users/auth/#{config["openid"] ? "open_id?openid_url=#{config["openid"]}" : "#{provider.underscore}"}">#{text}</a>@
     end
   end
 end
