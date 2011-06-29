@@ -1,5 +1,7 @@
 module Multiauth
   class SessionsController < Devise::OmniauthCallbacksController
+    include Devise::Controllers::Rememberable
+
     def auth
       # see http://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
       fields = env["omniauth.auth"] || request.env['rack.auth']
@@ -15,6 +17,10 @@ module Multiauth
       elsif (@user = User.authenticate(fields)) && (!@user.new_record?)
         flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => fields["provider"].titleize
         self.current_user = @user
+        @user.remember_me = true
+        @user.extend_remember_period = true
+        remember_me(@user)
+
         sign_in_and_redirect(@user, :event => :authentication)
         return
       end
