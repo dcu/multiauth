@@ -16,7 +16,6 @@ module Multiauth
         return
       elsif (@user = User.authenticate(fields)) && (!@user.new_record?)
         flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => fields["provider"].titleize
-        self.current_user = @user
         @user.remember_me = true
         @user.extend_remember_period = true
         remember_me(@user)
