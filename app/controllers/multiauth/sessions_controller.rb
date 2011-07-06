@@ -32,6 +32,7 @@ module Multiauth
     alias_method :linked_in, :auth
     alias_method :facebook, :auth
     alias_method :google, :auth
+    alias_method :flattr, :auth
 
     protected
   end
