@@ -33,6 +33,7 @@ module Multiauth
     alias_method :facebook, :auth
     alias_method :google, :auth
     alias_method :flattr, :auth
+    alias_method :sso, :auth
 
     protected
   end
