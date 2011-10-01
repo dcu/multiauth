@@ -2,9 +2,9 @@
 
 module Multiauth
   class Engine < ::Rails::Engine
-    paths.app.controllers = File.expand_path("../../../app/controllers", __FILE__)
-    paths.app.views       = File.expand_path("../../../app/views", __FILE__)
-    paths.config.routes   = File.expand_path("../routes.rb", __FILE__)
+    paths[File.expand_path("../../../app/controllers", __FILE__)]
+    paths[File.expand_path("../../../app/views", __FILE__)]
+    paths[File.expand_path("../routes.rb", __FILE__)]
 
 
     initializer "multiauth" do |app|
