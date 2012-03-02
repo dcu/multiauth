@@ -1,6 +1,7 @@
 module Multiauth
   class SessionsController < Devise::OmniauthCallbacksController
     include Devise::Controllers::Rememberable
+    skip_before_filter :verify_authenticity_token
 
     def auth
       # see http://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
